@@ -8,19 +8,17 @@ export default {
       menu: [
         {
           url: '/main',
-          name: 'Главная'
+          name: 'Главная',
+          children: []
         },
         {
           url: '/logic',
-          name: 'Логика'
-        },
-        {
-          url: '/beautiful',
-          name: 'Красота'
+          name: 'Работы'
         },
         {
           url: '/setting',
-          name: 'Настройки'
+          name: 'Настройки',
+          children: []
         }
       ]
     }

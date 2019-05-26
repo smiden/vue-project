@@ -8,17 +8,21 @@
              </a>
           </div>
           <div class="menuTop">
-            <ul>
-              <router-link v-for="(elem, index) in lang.menu"
+            <ul :style="{'color': theme[activeTheme].fontColor}">
+              <router-link v-for="(item, i) in lang.menu"
                            tag="li"
-                           :key="index"
-                           :to="elem.url"
+                           :key="item + i"
+                           :to="item.url"
                            active-class="selectMenu"
+                           style="position: relative"
               >
-                <a  :style="{'color': theme[activeTheme].fontColor}"> {{ elem.name }} </a>
+                <div>
+                    <b-nav-item  href="#">
+                      <a  :style="{'color': theme[activeTheme].fontColor}"> {{ item.name }}</a>
+                    </b-nav-item>
+                </div>
               </router-link>
             </ul>
-
           </div>
         <div id="content"
              :style="{'background': theme[activeTheme].background}"
@@ -36,10 +40,13 @@ import {store} from './store/state'
 export default {
   data () {
     return {
+      dropDownMenuActuve: []
     }
   },
-  methods: {
+  created () {
+    console.log(this.lang)
   },
+  methods: {},
   computed: {
     theme () {
       return store.getters['themePage/theme']
@@ -61,6 +68,7 @@ export default {
     padding: 0;
     text-decoration: none;
     list-style-type: none;
+    box-sizing: border-box
   }
   .clr {clear: both;}
 
@@ -75,22 +83,22 @@ export default {
   top: 0;
   height: 5vh;
   width: 100%;
-  /*z-index: 100;*/
+  z-index: 100;
   .logo {
     font-weight: bold;
     font-size: 3.6vh;
-    margin: .5vh 0 0 1vw;
+    margin-left: 1vw;
   }
 }
 .menuTop {
-  margin-top: .75vh;
+  margin-top: 0vh;
   ul {
     display: flex;
     position: absolute;
     right: 1vw;
     li {
       margin-left: 2vw;
-      font-size: 2.5vh;
+      font-size: 2.7vh;
       list-style-type: none;
     }
   }
@@ -103,7 +111,7 @@ export default {
   position: fixed;
   width: 100vw;
   height: 95vh;
-  margin-top: 5.3vh;
+  margin-top: 5vh;
   z-index: 0;
 }
 </style>

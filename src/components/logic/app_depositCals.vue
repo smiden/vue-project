@@ -1,14 +1,19 @@
 <template>
  <div>
-      <h2>Подсчет времени для накопления</h2><br>
-    <div id="wrapper" :style="{'border': '.3vh solid' + theme[activeTheme].fontColor, 'color': theme[activeTheme].fontColor}">
-      <div class="deposit">
-        <input type="number" min="0" v-model.trim="startSumm"> Уже накоплено <br><br>
-        <input type="number" min="0" v-model.trim="payt"> Откладывать каждый месяц <br><br>
-        <input type="number" min="0" v-model.trim="proc"> Процент вклада в год<br><br>
-        <input type="number" min="0" v-model.trim="finish">Хочу накопить <br><br>
+    <div id="wrapper">
+      <div class="decor">
+        <div class="form-left-decoration"></div>
+        <div class="form-right-decoration"></div>
+        <div class="circle"></div>
+        <div class="form-inner">
+          <h3>Форма подсчета накоплений депозита</h3>
+          <input type="number" min="0" v-model.trim.lazy="startSumm" placeholder="Уже накопленo">
+          <input type="number" min="0" v-model.trim="payt" placeholder="Откладывать каждый месяц">
+          <input type="number"  min="0" v-model.trim="proc" placeholder="Процент вклада в год">
+          <input type="number" min="0" v-model.trim="finish" placeholder="Хочу накопить">
+          <div class="deposit_result">Накопится через: {{ depositCals.time }} года<br> Накопленная сумма:  {{ depositCals.summa }} руб. </div>
+        </div>
       </div>
-      <div class="deposit_result">Накопится через: {{ depositCals.time }} года<br> Накопленная сумма:  {{ depositCals.summa }} руб. </div>
     </div>
  </div>
 </template>
@@ -19,7 +24,7 @@ import {store} from './../../store/state.js'
 export default {
   data () {
     return {
-      startSumm: 0,
+      startSumm: '',
       payt: '',
       proc: '',
       finish: ''
@@ -27,7 +32,7 @@ export default {
   },
   methods: {
     validateForm () {
-      return this.payt !== '' && this.proc !== '' && this.finish !== '' && this.startSumm !== ''
+      return this.payt !== '' && this.proc !== '' && this.finish !== ''
     }
   },
   computed: {
@@ -43,7 +48,7 @@ export default {
     percentDep () {
       return Math.floor(((Number(this.proc) / 100) / 12) * 10000) / 10000
     },
-    depositCals () {
+    depositCals: function () {
       let summa = Number(this.startSumm)
       let month = 0
 
@@ -68,24 +73,95 @@ export default {
     }
   },
   watch: {
-    startSumm: function () {
-      if (this.startSumm === '') {
-        this.startSumm = 0
-      }
-    }
   }
 }
 </script>
 
-<style scoped>
+<style  scoped lang="scss">
 #wrapper {
-  margin: 3vh 3vw;
+  margin: 0vh 3vw;
   padding: 1vh 1vw;
-  border: 1px solid red;
   display: flex;
   justify-content: space-between;
+  z-index: 1;
 }
 .deposit_result {
-  font-size: 5vh;
+  font-size: 2vh;
+}
+.decor {
+  position: relative;
+  width: 80vw;
+  margin: 50px auto 0;
+  border-radius: 30px;
+  background: white;
+}
+.form-left-decoration,
+.form-right-decoration {
+  content: "";
+  position: absolute;
+  width: 50px;
+  height: 20px;
+  background: #f69a73;
+  border-radius: 20px;
+}
+.form-left-decoration {
+  bottom: 60px;
+  left: -30px;
+}
+.form-right-decoration {
+  top: 60px;
+  right: -30px;
+}
+.form-left-decoration:before,
+.form-left-decoration:after,
+.form-right-decoration:before,
+.form-right-decoration:after {
+  content: "";
+  position: absolute;
+  width: 50px;
+  height: 20px;
+  border-radius: 30px;
+  background: white;
+}
+.form-left-decoration:before {top: -20px;}
+.form-left-decoration:after {
+  top: 20px;
+  left: 10px;
+}
+.form-right-decoration:before {
+  top: -20px;
+  right: 0;
+}
+.form-right-decoration:after {
+  top: 20px;
+  right: 10px;
+}
+.circle {
+  position: absolute;
+  bottom: 80px;
+  left: -55px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: white;
+}
+.form-inner {padding: 50px;}
+.form-inner input, {
+  display: block;
+  width: 100%;
+  padding: 0 20px;
+  margin-bottom: 10px;
+  background: #E9EFF6;
+  line-height: 40px;
+  border-width: 0;
+  border-radius: 20px;
+  font-family: 'Roboto', sans-serif;
+}
+.form-inner h3 {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 600;
+  font-size: 3vh;
+  text-align: center;
+  margin-bottom: 1vh;
 }
 </style>

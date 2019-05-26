@@ -5,7 +5,6 @@ import appMain from '@/components/app_mainPage'
 import appSetting from '@/components/app_setting'
 import appLogic from '@/components/app_logic'
 import appDepCals from '@/components/logic/app_depositCals'
-import appBeautiful from '@/components/app_beautiful'
 
 import E404 from '@/components/E404'
 
@@ -25,20 +24,14 @@ export default new Router({
     {
       path: '/logic',
       component: appLogic,
-      children: [
-        {
-          path: 'demo',
-          component: appDepCals
-        }
-      ]
+      children: [{
+        path: '/logic/depCals',
+        component: appDepCals
+      }]
     },
     {
       path: '/setting',
       component: appSetting
-    },
-    {
-      path: '/beautiful',
-      component: appBeautiful
     },
     {
       path: '*',

@@ -1,27 +1,16 @@
 export default {
   namespaced: true,
   state: {
-    activeTheme: 0,
+    activeTheme: 1,
     theme: [
-      {
-        fontColor: '#fff',
-        background: '#000',
-        name: 'Темная тема'
-      },
-      {
-        fontColor: '#000',
-        background: 'white',
-        name: 'Белая тема'
-      },
-      {
-        fontColor: '#19c8cc',
-        background: 'pink',
-        name: 'Розовая тема'
-      },
       {
         fontColor: '#a39801',
         background: '#3a085f',
-        name: 'Фиолетовая тема'
+        name: 'default'
+      },
+      {
+        fontColor: '#a39801',
+        background: '#3a085f'
       }
     ]
   },
@@ -36,6 +25,16 @@ export default {
   mutations: {
     selectTheme (state, index) {
       state.activeTheme = index
+    },
+    returnValueTheme (state) {
+      state.theme[1].fontColor = state.theme[0].fontColor
+      state.theme[1].background = state.theme[0].background
+    },
+    setBackgroundPage (state, value) {
+      state.theme[1].background = value
+    },
+    setFontColorPage (state, value) {
+      state.theme[1].fontColor = value
     }
   },
   action: {

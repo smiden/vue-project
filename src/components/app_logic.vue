@@ -1,23 +1,44 @@
 <template>
     <div id="app">
-      <div class="menu_bottom">
-        <router-link
-          tag="div"
-          class="menu_bottom-block"
-          to="/logic/demo"
-          active-class="menu_bottom-active"
-        ><a class="menu_bottom-link">Подсчет накоплений</a>
-        </router-link>
+      <div class="menu_bottom" :style="{'background': theme[activeTheme].background, 'border-bottom': '.1vh solid' + theme[activeTheme].fontColor}">
+          <template>
+          <router-link v-for="(item, i) in menuField"
+                       tag="div"
+                       :key="item + i"
+                       :to="item.url"
+          >
+              <a :style="{'color': theme[activeTheme].fontColor,'border': '.1vh solid' + theme[activeTheme].fontColor}"> {{ item.name }}</a>
+          </router-link>
+          </template>
       </div>
-
-     <div id="content">
-        <router-view></router-view>
-      </div>
+        <div class="content">
+          <router-view></router-view>
+        </div>
     </div>
 </template>
 
 <script>
+import {store} from './../store/state.js'
+
 export default {
+  data () {
+    return {
+      menuField: [
+        {name: 'Расчет накоплений при депозите', url: '/logic/depCals'}
+      ]
+    }
+  },
+  computed: {
+    theme () {
+      return store.getters['themePage/theme']
+    },
+    activeTheme () {
+      return store.getters['themePage/activeTheme']
+    },
+    lang () {
+      return store.getters['lang/lang']
+    }
+  },
   methods: {
   }
 }
@@ -25,9 +46,16 @@ export default {
 
 <style  scoped lang="scss">
 .menu_bottom {
-  height: 3vh;
   width: 100%;
+  height: 3vh;
   background: #0de7ff;
+  display: flex;
+  justify-content: center;
+  a {
+    height: 100%;
+    display: block;
+    padding:  0 20px;
+  }
 }
 .menu_bottom-block {
   text-align: center;
@@ -46,6 +74,6 @@ export default {
 }
 #content {
   width: 100%;
-  height: 91vh;
+  height: 92vh;
 }
 </style>

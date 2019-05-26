@@ -1,7 +1,6 @@
 <template>
     <div id="app" :style="{'color': theme[activeTheme].fontColor}">
       <h1>Демо проект</h1><br>
-      <p>В данном проекте я по максимому показываю свои знания.</p>
       <p>Использую следующие технологии: HTML-5, CSS-3, Javascript ES-6. Так же использую vue.js.</p>
       <p>Подробней: <br>
       vue.js: vue cli, vuex, vur-router, axios, приправленный flux-архитектурой <br>
