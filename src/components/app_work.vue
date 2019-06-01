@@ -24,7 +24,8 @@ export default {
   data () {
     return {
       menuField: [
-        {name: 'Расчет накоплений при депозите', url: '/logic/depCals'}
+        {name: 'Расчет накоплений при депозите', url: '/work/depCals'},
+        {name: 'Интернет-магазин', url: '/work/store'}
       ]
     }
   },

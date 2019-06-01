@@ -12,7 +12,7 @@ export default {
           children: []
         },
         {
-          url: '/logic',
+          url: '/work',
           name: 'Работы'
         },
         {

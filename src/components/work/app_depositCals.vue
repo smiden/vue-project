@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import {store} from './../../store/state.js'
+import {store} from '../../store/state.js'
 
 export default {
   data () {
