@@ -29,10 +29,10 @@ export default new Router({
         path: '/work/depCals',
         component: appDepCals
       },
-        {
-          path: '/work/store',
-          component: appStore
-        }]
+      {
+        path: '/work/store',
+        component: appStore
+      }]
     },
     {
       path: '/setting',
