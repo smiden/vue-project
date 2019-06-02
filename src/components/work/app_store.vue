@@ -17,6 +17,7 @@
           <ul v-show="i === activeMenu"
               v-for="(item, index) in elem.children"
               style="margin-left: 30px;"
+              :key='index'
           >
               <li>
                 <a href=""> {{ item.name }} </a>
@@ -41,7 +42,9 @@ export default {
       activeMenu: null,
       list: [
         {
-          name: 'МУЖСКАЯ', idMenu: 1, url: 'muzhskaya',
+          name: 'МУЖСКАЯ',
+          idMenu: 1,
+          url: 'muzhskaya',
           children: [
             {name: 'Валенки', idGroupProduct: 1},
             {name: 'Галоши', idGroupProduct: 2},
@@ -49,23 +52,24 @@ export default {
           ]
         },
         {
-          name: 'ЖЕНСКАЯ', idMenu: 2, url: 'zhenskaya',
+          name: 'ЖЕНСКАЯ',
+          idMenu: 2,
+          url: 'zhenskaya',
           children: [
             {name: 'Валенки', idGroupProduct: 4},
             {name: 'Галоши', idGroupProduct: 5},
             {name: 'Тапочки', idGroupProduct: 6}
           ]
-        },
+        }
       ],
       show: false
     }
   },
   methods: {
     menuActive (index) {
-      var id = this.list[index].url
       this.activeMenu = index
-      this.$router.push({path: `/work/store/${this.list[index].url}` })
-    },
+      this.$router.push({ path: `/work/store/${this.list[index].url}` })
+    }
   }
 }
 </script>
