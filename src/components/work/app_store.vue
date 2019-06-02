@@ -6,10 +6,13 @@
           <li style="font-size: 15px; color: #bd2130; margin: 20px 0 6px 30px;"
               @click="menuActive(i)"
           >
-            <a href="#"
-               class="menuTopLink"
+            <a class="menuTopLink"
                :class="{'menuTopLinkActive': i === activeMenu} "
-            > {{ elem.name}} </a>
+            >
+              <router-link :to="`/work/store/${ elem.url}`"
+
+              ></router-link>
+              {{ elem.name}} </a>
           </li>
           <ul v-show="i === activeMenu"
               v-for="(item, index) in elem.children"
@@ -23,7 +26,9 @@
         </ul>
 
       </div>
-      <div id="content">22</div>
+      <div id="content">
+        <router-view></router-view>
+      </div>
     </div>
 </template>
 
@@ -36,7 +41,7 @@ export default {
       activeMenu: null,
       list: [
         {
-          name: 'МУЖСКАЯ', idMenu: 1,
+          name: 'МУЖСКАЯ', idMenu: 1, url: 'muzhskaya',
           children: [
             {name: 'Валенки', idGroupProduct: 1},
             {name: 'Галоши', idGroupProduct: 2},
@@ -44,7 +49,7 @@ export default {
           ]
         },
         {
-          name: 'ЖЕНСКАЯ', idMenu: 2,
+          name: 'ЖЕНСКАЯ', idMenu: 2, url: 'zhenskaya',
           children: [
             {name: 'Валенки', idGroupProduct: 4},
             {name: 'Галоши', idGroupProduct: 5},
@@ -57,7 +62,9 @@ export default {
   },
   methods: {
     menuActive (index) {
+      var id = this.list[index].url
       this.activeMenu = index
+      this.$router.push({path: `/work/store/${this.list[index].url}` })
     },
   }
 }
@@ -111,6 +118,5 @@ export default {
  }
  #content {
    width: 100%;
-   background: gold;
  }
 </style>
