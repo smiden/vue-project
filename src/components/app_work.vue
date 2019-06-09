@@ -5,7 +5,7 @@
           <router-link v-for="(item, i) in menuField"
                        tag="div"
                        :key="item + i"
-                       :to="item.url"
+                       :to="urlBase + item.id"
           >
               <a :style="{'color': theme[activeTheme].fontColor,'border': '.1vh solid' + theme[activeTheme].fontColor}"> {{ item.name }}</a>
           </router-link>
@@ -24,9 +24,10 @@ export default {
   data () {
     return {
       menuField: [
-        {name: 'Расчет накоплений при депозите', url: '/work/depCals'},
-        {name: 'Интернет-магазин', url: '/work/store'}
-      ]
+        {name: 'Расчет накоплений при депозите', id: '/depCals'},
+        {name: 'Интернет-магазин', id: '/store'}
+      ],
+      urlBase: this.$route.path
     }
   },
   computed: {

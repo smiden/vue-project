@@ -23,37 +23,26 @@ export default new Router({
       path: '/main',
       component: appMain
     },
-    {
-      path: '/work',
+    { path: '/work',
       component: appWork,
-      children: [{
-        path: '/work/depCals',
-        component: appDepCals
-      },
-      {
-        path: '/work/store/',
-        name: 'store',
-        component: appStore,
-        children: [{
-          path: '/muzhskaya',
-          component: appContentStore
-        }, {
-          path: '/zhenskaya',
-          component: appContentStore
+      children: [
+        {
+          path: 'depCals',
+          component: appDepCals
+        },
+        {
+          path: 'store/',
+          name: 'store',
+          component: appStore,
+          children: [{
+            path: 'muzhskaya',
+            component: appContentStore
+          },
+          {
+            path: 'zhenskaya',
+            component: appContentStore
+          }]
         }]
-      }]
-    },
-    {
-      path: '/work/store/:id',
-      name: 'store1',
-      component: appStore,
-      children: [{
-        path: 'muzhskaya',
-        component: appContentStore
-      }, {
-        path: 'zhenskaya',
-        component: appContentStore
-      }]
     },
     {
       path: '/setting',

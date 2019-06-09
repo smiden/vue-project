@@ -5,9 +5,7 @@
 </template>
 
 <script>
-  export default {
-    name: "app_contentStore"
-  }
+export default {}
 </script>
 
 <style scoped>

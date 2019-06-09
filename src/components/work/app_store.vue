@@ -6,13 +6,9 @@
           <li style="font-size: 15px; color: #bd2130; margin: 20px 0 6px 30px;"
               @click="menuActive(i)"
           >
-            <a class="menuTopLink"
-               :class="{'menuTopLinkActive': i === activeMenu} "
-            >
-              <router-link :to="`/work/store/${ elem.url}`"
-
-              ></router-link>
-              {{ elem.name}} </a>
+              <a class="menuTopLink"
+                 :class="{'menuTopLinkActive': i === activeMenu} "
+              > {{ elem.name}} </a>
           </li>
           <ul v-show="i === activeMenu"
               v-for="(item, index) in elem.children"
@@ -34,11 +30,11 @@
 </template>
 
 <script>
-import {store} from './../../store/state.js'
 
 export default {
   data () {
     return {
+      urlBase: this.$route.path,
       activeMenu: null,
       list: [
         {
@@ -68,7 +64,7 @@ export default {
   methods: {
     menuActive (index) {
       this.activeMenu = index
-      this.$router.push({ path: `/work/store/${this.list[index].url}` })
+      this.$router.push(this.urlBase + '/' + this.list[index].url)
     }
   }
 }
