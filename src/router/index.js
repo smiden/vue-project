@@ -16,14 +16,15 @@ export default new Router({
   routes: [
     {
       path: '',
-      redirect: {name: 'main'}
+      redirect: { name: 'main' }
     },
     {
       name: 'main',
       path: '/main',
       component: appMain
     },
-    { path: '/work',
+    {
+      path: '/work',
       component: appWork,
       children: [
         {

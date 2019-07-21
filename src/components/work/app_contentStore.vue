@@ -1,15 +1,13 @@
 <template>
-    <div id="app">
-      1111212111
-    </div>
+  <div id="app">1111212111</div>
 </template>
 
 <script>
-export default {}
+export default {};
 </script>
 
 <style scoped>
-  #app {
-    background: gold;
-  }
+#app {
+  background: gold;
+}
 </style>

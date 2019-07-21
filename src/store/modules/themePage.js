@@ -15,25 +15,25 @@ export default {
     ]
   },
   getters: {
-    activeTheme (state) {
+    activeTheme(state) {
       return state.activeTheme
     },
-    theme (state) {
+    theme(state) {
       return state.theme
     }
   },
   mutations: {
-    selectTheme (state, index) {
+    selectTheme(state, index) {
       state.activeTheme = index
     },
-    returnValueTheme (state) {
+    returnValueTheme(state) {
       state.theme[1].fontColor = state.theme[0].fontColor
       state.theme[1].background = state.theme[0].background
     },
-    setBackgroundPage (state, value) {
+    setBackgroundPage(state, value) {
       state.theme[1].background = value
     },
-    setFontColorPage (state, value) {
+    setFontColorPage(state, value) {
       state.theme[1].fontColor = value
     }
   },

@@ -24,7 +24,7 @@ export default {
     }
   },
   getters: {
-    lang (state) {
+    lang(state) {
       return state.lang
     }
   }
